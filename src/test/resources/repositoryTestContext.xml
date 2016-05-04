@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean name="pizzaRepository" class="repository.impl.InMemPizzaRepository"
+		init-method="init">
+		<property name="listOfPizzas">
+			<list>
+				<bean class="domain.Pizza">
+					<constructor-arg index="0" value="0" />
+					<constructor-arg index="1" value="First" />
+					<constructor-arg index="2" value="10" />
+					<constructor-arg index="3" value="Sea" />
+				</bean>
+				<bean class="domain.Pizza">
+					<constructor-arg index="0" value="1" />
+					<constructor-arg index="1" value="Second" />
+					<constructor-arg index="2" value="100.50" />
+					<constructor-arg index="3" value="Meat" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="orderRepository" class="repository.impl.InMemOrderRepository" />
+	<bean class="service.infrastructure.BenchMarkProxyBeanPostProcessor" />
+
+	<!-- <bean id="customer" class="domain.Customer"> <constructor-arg value="2" 
+		/> <constructor-arg value="repositoryContextCustomer" /> </bean> -->
+
+	<bean id="createPizzaBean" class="service.CreatePizzaService" />
+</beans>
