@@ -13,8 +13,6 @@ public class JPAWithSpringApp {
 		ConfigurableApplicationContext repContext = new ClassPathXmlApplicationContext("repositoryMySQLContext.xml");
 		ConfigurableApplicationContext applicationContext = new ClassPathXmlApplicationContext(
 				new String[] { "appContext.xml" }, repContext);
-		repContext.getEnvironment().setActiveProfiles("prod");
-		repContext.refresh();
 
 		PizzaRepository pizzaRepository = (PizzaRepository) applicationContext.getBean("pizzaRepository");
 		Pizza pizza = new Pizza("MeatPizza", 99.99d, PizzaType.Meat);
